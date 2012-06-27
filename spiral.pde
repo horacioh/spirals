@@ -1,9 +1,10 @@
 
 float x, y, z;
-
+int w = 1100;
+int h = w;
 int numAssets = 400;
-int startX = 450;
-int startY = 450;
+int startX = w/2;
+int startY = h/2;
 int x_spacing = 50;
 int y_spacing = 50;
 int gridCols= 12;
@@ -19,7 +20,7 @@ boolean paused = false;
 boolean record = false;
 
 void setup() {
-  size(900, 900);
+  size(w, h);
   smooth();
   
    pickedColors= new color[numAssets];
@@ -56,15 +57,15 @@ void draw() {
 }
 
 float xn() {
-  return noise(x * 0.01, y * 0.01, z * 0.03) * 200;
+  return noise(x * 0.01, y * 0.01, z * 0.03) * 100;
 }
 
 float yn() {
-  return noise(x * 0.01, y * 0.01, z * 0.03) * 200;
+  return noise(x * 0.01, y * 0.01, z * 0.03) * 100;
 }
 
 float sn() {
-  return noise(x * cos(o), y * sin(o), z * 0.168) * 100;
+  return noise(x * 0.01, y * 0.01, z * 0.01) * 100;
 }
 
 void keyPressed() {
