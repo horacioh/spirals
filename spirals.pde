@@ -6,14 +6,14 @@ RShape s;
 float x, y, z;
 int w = 800;
 int h = w;
-int numAssets = 400;
+int numAssets = 10000;
 int startX = w/2;
 int startY = h/2;
-int x_spacing = 1;
-int y_spacing = 1;
+int x_spacing = 10;
+int y_spacing = 10;
 int gridCols= 12;
 float o = 1.6180339887498;
-
+float[] theta;
 
 
 color[]palette = {
@@ -33,17 +33,19 @@ void setup() {
   smooth();
 
   pickedColors= new color[numAssets];
+  theta = new float[numAssets];
 
   int colorPick = 0;
   for (int j=0; j<numAssets; j++) {
-    
+    theta[j] = j*0.1;
     //pickedColors[j] = palette[(int)random(palette.length)];
     pickedColors[j] = palette[colorPick];
     if (colorPick < palette.length-1)
     {
       colorPick++;
       println("entro en el suma color pick");
-    } else {
+    } 
+    else {
       colorPick = 0;
       println("entro en el colorPick = 0");
     }
@@ -59,19 +61,16 @@ void draw() {
   background(#ECECEC);
 
   for (int i=0; i<numAssets; i++) {
-    x = startX + (cos(i*x_spacing) * (i*o));
+    //x = startX + (cos(i*x_spacing) * (i*o));
     //println(cos(i*x_spacing));
-    y = startY + (sin(i*y_spacing) * (i*o));
+    //y = startY + (sin(i*y_spacing) * (i*o));
+
+    x = ((sin(theta[i])*theta[i]) + startX) + x_spacing;
+    y = ((cos(theta[i])*theta[i]) + startY) + y_spacing;
 
     fill( pickedColors[i] );
     noStroke();
-    //translate(-100/2, -(100/2);
-    //float s = 49 + ((i*0.3) * sin(o));
-    //rotate(PI/random(3));
-    //RG.shape(s, x + xn(), y + yn(), 100, 100);
-    //RG.shape(s, x, y, i/o, i/o);
-    //ellipse(x + xn(), y + yn(), sn(), sn());
-    ellipse(x, y, 30+((i*0.5)/o), 30+((i*0.5)/o));
+    ellipse(x, y, 30, 30);
   }
 
   z++;
